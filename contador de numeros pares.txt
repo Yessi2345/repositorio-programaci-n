@@ -1,0 +1,29 @@
+contador de numeros pares
+numero=int(input("ingrese un numero"))
+suma=0
+n=1
+n=0
+while n<=numero:
+    
+    suma=suma+n
+    print(f"la suma de:{n} + {suma-n} = {suma}")
+    n+=1
+	
+FACTORIAL
+numero=int(input("ingrese un numero"))
+factorial=1
+n=1
+while n<numero:
+    factorial=factorial*n
+    n+=1
+print(f"el factorial de {numero} es {factorial}")
+4.	Adivinar un número secreto
+num=int(input("ingrese un numero"))
+numero_secreto= 25
+while num!=numero_secreto:
+    num=int(input("no es el numero, ingrese nuevamente el numero: "))
+    if num<0 or num>100:
+        print("solo puedes agregar numeros del 1 al 100")
+    elif num>numero_secreto:
+        print("el numero es mayor al numero secreto")
+print("Felicidades encontraste el numero secreto :)")
