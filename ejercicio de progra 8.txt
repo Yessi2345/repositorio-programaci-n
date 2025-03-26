@@ -1,0 +1,21 @@
+saldo=3000
+intentos_fallidos=1
+monto_a_retirar=float(input("ingrese la cantidad que desea retirar: "))
+while monto_a_retirar > saldo:
+    print(f"saldo actual: Q{saldo}")
+    monto_a_retirar=float(input("ingrese la cantidad que desea retirar: "))
+    intentos_fallidos +=1
+    if intentos_fallidos ==3 and monto_a_retirar>saldo:
+        print("has superado todos los intentos")
+        print(f"saldo insuficiente. intento restantes:{3 - intentos_fallidos}")
+        break
+        
+if monto_a_retirar == 0:
+    print("saliendo del cajero ¡bye!")
+elif monto_a_retirar<saldo:
+     print(f"retiro exitodo. Nuevo saldo: Q{saldo - monto_a_retirar}")
+    
+ 
+else:
+    if saldo == monto_a_retirar:
+        print(f"retiro exitoso. Saldo agotado")
