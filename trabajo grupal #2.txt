@@ -1,0 +1,49 @@
+vuelos = []
+reservas = []
+
+def crear_vuelo():
+    codigo = input("Código del vuelo: ")
+    origen = input("Origen: ")
+    destino = input("Destino: ")
+    asientos = int(input("Cantidad de asientos: "))
+    vuelo = {"codigo": codigo, "origen": origen, "destino": destino, "asientos": [1] * asientos}
+    vuelos.append(vuelo)
+    print("Vuelo creado.\n")
+
+def ver_vuelos():
+    for i, v in enumerate(vuelos):
+        print(f"{i+1}. {v['codigo']} - {v['origen']} a {v['destino']}")
+
+def reservar():
+    ver_vuelos()
+    i = int(input("Elige un vuelo (número): ")) - 1
+    vuelo = vuelos[i]
+    print("Asientos: ", vuelo["asientos"])
+    a = int(input("Elige asiento (número): ")) - 1
+    if vuelo["asientos"][a] == 1:
+        nombre = input("Tu nombre: ")
+        vuelo["asientos"][a] = 0
+        reservas.append({"nombre": nombre, "vuelo": vuelo["codigo"], "asiento": a + 1})
+        print("Reserva hecha.\n")
+    else:
+        print("Asiento ocupado.\n")
+
+def ver_reservas():
+    for r in reservas:
+        print(f"{r['nombre']} - Vuelo {r['vuelo']} - Asiento {r['asiento']}")
+
+def menu():
+    while True:
+        print("\n1. Crear vuelo\n2. Reservar asiento\n3. Ver reservas\n4. Salir")
+        opcion = input("Opción: ")
+        if opcion == "1": crear_vuelo()
+        elif opcion == "2": reservar()
+        elif opcion == "3": ver_reservas()
+        elif opcion == "4": break
+        else: print("Opción no válida.")
+
+menu()
+
+# YESSICA ARACELY GUTIÉRREZ GARCIA 
+# PAMELE BETZAIDA TZUNÚN TAX
+# ARDANY EMMANUEL BARRENO GUINEA
