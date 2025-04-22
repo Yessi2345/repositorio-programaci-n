@@ -1,0 +1,31 @@
+#oracion
+mensaje= "python","es","un" "lenguaje","versatil","y","poderoso"
+print(mensaje[0])
+print(mensaje[5])
+
+#hola mundo
+def eliminar_espacios_repetidos(cadena):
+    cadena_limpia = ' '.join(cadena.split())  
+    return cadena_limpia
+print(eliminar_espacios_repetidos("Hola     mundo     en Python"))
+
+#3.	Dado un correo electrónico, extrae solo el dominio.
+def extraer_dominio(correo):
+    dominio = correo.split("@")[1] 
+    return dominio
+print(extraer_dominio("usuario@gmail.com"))
+
+#Dado un nombre de archivo, verifica si tiene la extensión correcta (ej. .pdf)
+def verificar_extension(archivo, extension):
+    return archivo.endswith(extension)  
+print(verificar_extension("documento.pdf", ".pdf"))  
+print(verificar_extension("imagen.jpg", ".pdf"))     
+
+#5.	Dado un texto, invierte el orden de las palabras
+def invertir_palabras(texto):
+    palabras = texto.split() 
+    palabras_invertidas = ' '.join(palabras[::-1]) 
+    return palabras_invertidas
+entrada = "Me gusta Python"
+salida = invertir_palabras(entrada)
+print(salida)
