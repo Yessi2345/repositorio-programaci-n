@@ -1,0 +1,91 @@
+# Datos de la oms
+oms_data = {
+    3: {'peso': (3.4, 4.2), 'talla': (50.3, 52,3), 'craneo': (34.8,37.2)},
+    6: {'peso': (6.0, 7.2), 'talla': (63.0, 67.6), 'craneo': (40.5, 43.0)},
+    9: {'peso': (9.2,  9.8), 'talla': (72.0, 72.7), 'craneo': (46.0, 47.2)},
+    12: {'peso': (10.2, 11.0), 'talla': (76.0, 78.0), 'craneo': (47.0, 48.0)},
+    15: {'peso': (11.0, 11.4), 'talla': (79.0, 79.5), 'craneo': (48.0, 48.4)},
+    18: {'peso': (11,8, 12.0), 'talla': (82.0, 82.5), 'craneo': (48.0, 49.0)},
+    24: {'peso': (10.2, 12.5), 'talla': (83.0, 89.0), 'craneo': (49.0, 49.5)}
+    
+}
+
+
+registros = []
+
+def clasificar(valor, minimo, maximo):
+    if valor < minimo:
+        return "Bajo"
+    elif valor > maximo:
+        return "Sobre"
+    else:
+        return "Dentro"
+
+def ingresar_datos():
+    print("Registro de crecimiento infantil")
+    cantidad = int(input("¿Cuántos niños desea ingresar? "))
+    
+    for i in range(cantidad):
+        print(f"\nNiño {i + 1}:")
+        edad = int(input("Edad (meses, entre 0 y 24): "))
+        if edad not in oms_data:
+            print("Edad fuera del rango permitido. Intente con 3, 6, 9, 12, 15, 18 o 24.")
+            continue
+        
+        peso = float(input("Peso (kg): "))
+        talla = float(input("Talla (cm): "))
+        craneo = float(input("Perímetro craneal (cm): "))
+        dpto = input("Departamento: ")
+
+        # Clasificación según OMS
+        rangos = oms_data[edad]
+        peso_clasif = clasificar(peso, *rangos['peso'])
+        talla_clasif = clasificar(talla, *rangos['talla'])
+        craneo_clasif = clasificar(craneo, *rangos['craneo'])
+
+        registros.append({
+            'edad': edad,
+            'peso': peso,
+            'talla': talla,
+            'craneo': craneo,
+            'departamento': dpto,
+            'clasificaciones': {
+                'peso': peso_clasif,
+                'talla': talla_clasif,
+                'craneo': craneo_clasif
+            }
+        })
+
+def generar_reporte():
+    print("\n--- Reporte por Departamento ---")
+    departamentos = {}
+
+    for registro in registros:
+        depto = registro['departamento']
+        clasif = registro['clasificaciones']
+        
+        if depto not in departamentos:
+            departamentos[depto] = {
+                'peso': [], 'talla': [], 'craneo': []
+            }
+
+        departamentos[depto]['peso'].append(clasif['peso'])
+        departamentos[depto]['talla'].append(clasif['talla'])
+        departamentos[depto]['craneo'].append(clasif['craneo'])
+
+    for depto, indicadores in departamentos.items():
+        print(f"\nDepartamento: {depto}")
+        for indicador, valores in indicadores.items():
+            total = len(valores)
+            bajo = valores.count('Bajo') * 100 / total
+            dentro = valores.count('Dentro') * 100 / total
+            sobre = valores.count('Sobre') * 100 / total
+            print(f"  {indicador.capitalize()}: Bajo {bajo:.1f}% | Dentro {dentro:.1f}% | Sobre {sobre:.1f}%")
+
+
+ingresar_datos()
+generar_reporte()
+
+# Yessica Aracely Gutiérrez García
+# Ardany Emmanuel Barreo
+# Pamela Betzaida Tzunún
